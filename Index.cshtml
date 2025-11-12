@@ -1,0 +1,129 @@
+@page
+@model BESTPET_DEFINITIVO.Pages.Usuarios.IndexModel
+
+@{
+    ViewData["Title"] = "Panel de Administrador";
+}
+
+<main>
+    <section class="registro-section profile-section">
+        <div class="registro-titulo">Panel de Administrador</div>
+
+        <div class="admin-actions">
+            <a asp-page="Create" class="center-btn">Registrar Usuario</a>
+            <form method="post" style="margin:0;">
+                <button type="submit" asp-page-handler="ExportExcel" class="center-btn btn-excel">
+                    Exportar a Excel
+                </button>
+            </form>
+        </div>
+
+        <div class="user-cards-container">
+            @if (Model.Usuario != null && Model.Usuario.Any())
+            {
+                @foreach (var item in Model.Usuario)
+                {
+                    <div class="user-card">
+                        <div class="user-card-header">
+                            @if (!string.IsNullOrEmpty(item.RutaFoto))
+                            {
+                                <img src="@item.RutaFoto" alt="Foto de @item.Nombre" class="user-card-photo" />
+                            }
+                            else
+                            {
+
+                                <img src="~/imagenes/foto-generica.jpeg" alt="Foto por defecto" class="user-card-photo" />
+                            }
+
+                            <div class="user-card-name">@item.Nombre @item.Apellido</div>
+
+                            @if (item.Rol == "Admin")
+                            {
+                                <span class="user-card-badge admin-badge">@item.Rol</span>
+                            }
+                            else if (item.Rol == "Paseador")
+                            {
+
+                                <span class="user-card-badge paseador-badge">@item.Rol</span>
+                            }
+                            else if (item.Rol == "Cliente")
+                            {
+
+                                <span class="user-card-badge cliente-badge">@item.Rol</span>
+                            }
+                        </div>
+                        <div class="user-card-body">
+                            <div class="user-card-detail"><strong>Correo:</strong> @item.Correo</div>
+                            <div class="user-card-detail"><strong>Documento:</strong> @item.Documento</div>
+                            <div class="user-card-detail"><strong>Registrado:</strong> @item.FechaRegistro.ToString("dd/MM/yyyy")</div>
+                        </div>
+                        <div class="user-card-actions">
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="action-link edit">Editar</a>
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="action-link details">Detalles</a>
+                            <a asp-page="./Delete" asp-route-id="@item.Id" class="action-link delete">Eliminar</a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p style="width: 100%; text-align: center;">No hay usuarios registrados.</p>
+            }
+        </div>
+
+        <div class="admin-actions" style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+            <a href="/pagina-que-no-existe" class="center-btn btn-secondary">Probar Error 404</a>
+            <a asp-page="/TestError" class="center-btn btn-danger">Probar Error 500</a>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <style>
+        .admin-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+            .admin-actions .center-btn {
+                width: auto;
+                padding: 10px 25px;
+                text-decoration: none;
+                margin: 0;
+            }
+
+        .btn-excel {
+            background: #1D6F42;
+        }
+
+            .btn-excel:hover {
+                background: #165934;
+            }
+
+        .user-card-badge {
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .admin-badge {
+            background: linear-gradient(90deg, #FFD700, #FDB813);
+            color: #4D4D4D;
+        }
+
+        .paseador-badge {
+            background-color: #ff6ad1;
+        }
+
+        .cliente-badge {
+            background-color: #56CCF2;
+        }
+    </style>
+}

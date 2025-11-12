@@ -1,0 +1,149 @@
+@page
+@model BESTPET_DEFINITIVO.Pages.Usuarios.CreateModel
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<main>
+    <section class="registro-section">
+        <div class="registro-titulo">Registro</div>
+        <div class="registro-switch">
+            <button type="button" id="btnCliente" class="active" onclick="mostrarFormulario('cliente')">Cliente</button>
+            <button type="button" id="btnPaseador" onclick="mostrarFormulario('paseador')">Paseador</button>
+        </div>
+
+        @* FORMULARIO PARA CLIENTES *@
+        <form method="post" id="form-cliente" class="login-form" style="display:flex;" enctype="multipart/form-data">
+            <input type="hidden" name="Usuario.Rol" value="Cliente" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group-full"><label>Foto de perfil</label><input type="file" name="FotoPerfil" accept="image/*"></div>
+
+            <div class="form-group"><label asp-for="Usuario.Nombre"></label><input asp-for="Usuario.Nombre" required placeholder="Ingresa tu nombre"><span asp-validation-for="Usuario.Nombre" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="Usuario.Apellido"></label><input asp-for="Usuario.Apellido" required placeholder="Ingresa tu apellido"><span asp-validation-for="Usuario.Apellido" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="Usuario.Documento"></label><input asp-for="Usuario.Documento" required placeholder="Tu número de documento"><span asp-validation-for="Usuario.Documento" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="Usuario.FechaNacimiento">Fecha de nacimiento</label><input asp-for="Usuario.FechaNacimiento" type="date" required><span asp-validation-for="Usuario.FechaNacimiento" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="Usuario.Celular"></label><input asp-for="Usuario.Celular" required placeholder="Tu número de celular"><span asp-validation-for="Usuario.Celular" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="Usuario.Correo"></label><input asp-for="Usuario.Correo" type="email" required placeholder="ejemplo@correo.com"><span asp-validation-for="Usuario.Correo" class="text-danger"></span></div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input asp-for="Password" type="password" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Confirmar Contraseña</label>
+                <input asp-for="ConfirmPassword" type="password" required> @* <-- CORREGIDO *@
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group-full">
+                <input type="submit" value="Registrarse como Cliente" class="center-btn" />
+            </div>
+        </form>
+
+        @* FORMULARIO PARA PASEADORES - ¡NUEVA INTERFAZ! *@
+        <form method="post" id="form-paseador" class="login-form paseador-form" style="display:none;" enctype="multipart/form-data">
+            <input type="hidden" name="Usuario.Rol" value="Paseador" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="paseador-form-header">
+                <h3>¡Únete como Paseador!</h3>
+                <p>Completa tus datos y comparte tu amor por las mascotas.</p>
+            </div>
+
+            <div class="paseador-form-body">
+                <div class="form-group-full"><label>Foto de perfil</label><input type="file" name="FotoPerfil" accept="image/*"></div>
+
+                <div class="form-group"><label asp-for="Usuario.Nombre"></label><input asp-for="Usuario.Nombre" placeholder="Ingresa tu nombre"><span asp-validation-for="Usuario.Nombre" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="Usuario.Apellido"></label><input asp-for="Usuario.Apellido" placeholder="Ingresa tu apellido"><span asp-validation-for="Usuario.Apellido" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="Usuario.Documento"></label><input asp-for="Usuario.Documento" placeholder="Tu número de documento"><span asp-validation-for="Usuario.Documento" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="Usuario.FechaNacimiento">Fecha de nacimiento</label><input asp-for="Usuario.FechaNacimiento" type="date"><span asp-validation-for="Usuario.FechaNacimiento" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="Usuario.Celular"></label><input asp-for="Usuario.Celular" placeholder="Tu número de celular"><span asp-validation-for="Usuario.Celular" class="text-danger"></span></div>
+                <div class="form-group"><label asp-for="Usuario.Correo"></label><input asp-for="Usuario.Correo" type="email" placeholder="ejemplo@correo.com"><span asp-validation-for="Usuario.Correo" class="text-danger"></span></div>
+
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input asp-for="Password" type="password" required>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Contraseña</label>
+                    <input asp-for="ConfirmPassword" type="password" required> @* <-- CORREGIDO *@
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group-full"><label asp-for="Usuario.Descripcion">Descripción sobre ti</label><textarea asp-for="Usuario.Descripcion" rows="5" placeholder="Cuéntanos tu experiencia con animales, tu disponibilidad, tarifas..."></textarea></div>
+                <div class="form-group-full"><label>Anexa tu experiencia (Certificados, CV)</label><input type="file" name="ArchivoExperiencia" accept=".pdf,.doc,.docx,.jpg,.png"></div>
+            </div>
+
+            <div class="form-group-full"><input type="submit" value="Registrarse como Paseador" class="center-btn" /></div>
+        </form>
+    </section>
+</main>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function mostrarFormulario(tipo) {
+            document.getElementById('form-cliente').style.display = tipo === 'cliente' ? 'flex' : 'none';
+            document.getElementById('form-paseador').style.display = tipo === 'paseador' ? 'flex' : 'none';
+            document.getElementById('btnCliente').classList.toggle('active', tipo === 'cliente');
+            document.getElementById('btnPaseador').classList.toggle('active', tipo === 'paseador');
+        }
+    </script>
+    <style>
+        .text-danger {
+            color: #fc575e;
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+
+        /* --- ESTILOS ADICIONALES PARA EL FORMULARIO DE PASEADOR --- */
+        .paseador-form {
+            background-color: #f7fbfd; /* Un color de fondo ligeramente diferente */
+            border-left: 5px solid #8e2de2; /* Un borde lateral distintivo */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .paseador-form-header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #8e2de2;
+        }
+
+            .paseador-form-header h3 {
+                margin-bottom: 5px;
+                font-size: 1.8em;
+                font-weight: 600;
+            }
+
+            .paseador-form-header p {
+                font-size: 1em;
+                color: #666;
+            }
+
+        .paseador-form-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Espacio entre los grupos de formulario */
+        }
+
+            .paseador-form-body .form-group {
+                flex: 1 1 calc(50% - 20px); /* Dos columnas, con espacio */
+            }
+
+            .paseador-form-body .form-group-full {
+                flex: 1 1 100%; /* Una columna para elementos grandes */
+            }
+
+            /* Asegurarse que el textarea de descripción sea más grande */
+            .paseador-form-body textarea[asp-for="Usuario.Descripcion"] {
+                min-height: 120px; /* Un poco más alto */
+            }
+    </style>
+}

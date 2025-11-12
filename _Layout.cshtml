@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BestPet</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar-figma">
+            <div class="navbar-container">
+                <a asp-page="/Index" class="navbar-logo-link">
+                    <img src="~/imagenes/WhatsApp Image 2025-09-02 at 9.07.32 PM.jpeg"
+                         alt="Logo BestPet"
+                         class="navbar-logo-img">
+                </a>
+                <ul class="navbar-menu">
+                    <li><a asp-page="/Index">Inicio</a></li>
+                    <li><a asp-page="/Nosotros">Nosotros</a></li>
+                </ul>
+
+                <div class="navbar-actions">
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        // --- SI EL USUARIO SÍ HA INICIADO SESIÓN ---
+                        <span class="navbar-welcome">¡Hola, @User.Identity.Name!</span>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            // Si es Admin, el botón apunta al Panel
+                            <a asp-page="/Usuarios/Index" class="navbar-btn navbar-btn-secondary">Panel de Admin</a>
+                        }
+                        else
+                        {
+                            // Si es Cliente o Paseador, apunta a su perfil
+                            <a asp-page="/MiCuenta" class="navbar-btn navbar-btn-secondary">Mi Cuenta</a>
+                        }
+
+                        <form method="post" asp-page="/Logout">
+                            <button type="submit" class="navbar-btn">Cerrar Sesión</button>
+                        </form>
+                    }
+                    else
+                    {
+                        // --- SI EL USUARIO NO HA INICIADO SESIÓN ---
+                        <a asp-page="/Login" class="navbar-btn">Iniciar Sesión</a>
+                        <a asp-page="/Usuarios/Create" class="navbar-btn navbar-btn-secondary">Regístrate</a>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>BestPet © 2025 - Proyecto académico SENA</p>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

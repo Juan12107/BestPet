@@ -1,0 +1,748 @@
+/* ================================= */
+/* --- ARCHIVO MAESTRO DE ESTILOS --- */
+/* ================================= */
+
+/* --- Estilos Generales --- */
+body {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    color: #374785;
+    background: linear-gradient(120deg, #6a8dff 0%, #ff6ad1 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* --- Barra de Navegación --- */
+.navbar-figma {
+    background: rgba(255,255,255,0.97);
+    box-shadow: 0 2px 12px rgba(106,141,255,0.07);
+    border-radius: 0 0 18px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.navbar-logo-img {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 16px;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 90px;
+}
+
+    .navbar-menu li {
+        margin-left: 24px;
+    }
+
+        .navbar-menu li a {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #6a8dff;
+            text-decoration: none;
+            padding: 0 8px;
+            transition: color 0.2s;
+        }
+
+            .navbar-menu li a:hover {
+                color: #ff6ad1;
+            }
+
+/* --- Estilos para los Botones de Navegación --- */
+.navbar-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre los botones */
+}
+
+.navbar-btn {
+    padding: 10px 28px;
+    border-radius: 22px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 2px solid transparent; /* Borde transparente para mantener el tamaño */
+    transition: all 0.2s ease-in-out;
+    display: block;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* <-- AQUÍ ESTÁ LA LÍNEA AÑADIDA */
+}
+
+/* Estilo Principal (con relleno) */
+.navbar-btn {
+    background: linear-gradient(90deg, #6a8dff 0%, #ff6ad1 100%);
+    color: #fff;
+}
+
+    .navbar-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Estilo Secundario (sin relleno) */
+    .navbar-btn.navbar-btn-secondary {
+        background: #fff;
+        color: #6a8dff;
+        border-color: #6a8dff;
+    }
+
+        .navbar-btn.navbar-btn-secondary:hover {
+            background: #6a8dff;
+            color: #fff;
+        }
+
+
+/* --- Estilos Página de Inicio (Hero Section) --- */
+.inicio-hero {
+    position: relative;
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    overflow: hidden;
+}
+
+.fondo-mascotas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+    .fondo-mascotas img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+.inicio-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+h1.inicio-nombre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5em;
+    font-weight: 900;
+    color: #89a4ff;
+    letter-spacing: 3px;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+/* --- Estilos de Formularios (Registro y Edición) --- */
+.registro-section {
+    max-width: 540px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.97);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(106,141,255,0.13);
+    padding: 40px 32px;
+}
+
+.registro-titulo {
+    text-align: center;
+    color: #6a8dff;
+    font-size: 2.1em;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+/* --- Estilos para el selector Cliente/Paseador --- */
+
+.registro-switch {
+    text-align: center;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+    .registro-switch button {
+        width: 48%;
+        min-width: 120px;
+        background: linear-gradient(90deg, #6a8dff 0%, #ff6ad1 100%);
+        color: #fff;
+        border: none;
+        border-radius: 22px;
+        padding: 12px 0;
+        font-size: 1.1em;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        box-shadow: 0 2px 8px rgba(106,141,255,0.10);
+    }
+
+        .registro-switch button.active,
+        .registro-switch button:hover {
+            background: linear-gradient(90deg, #ff6ad1 0%, #6a8dff 100%);
+            transform: scale(1.04);
+        }
+
+.login-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 16px;
+}
+
+.form-group {
+    flex: 1 1 47%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-full {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    font-weight: 600;
+    color: #6a8dff;
+    margin-bottom: 3px;
+}
+
+.login-form input, .login-form textarea, .login-form select {
+    border-radius: 8px;
+    border: 1.5px solid #e3eaff;
+    padding: 10px 14px;
+    font-size: 1em;
+    background: #f7faff;
+    font-family: inherit;
+}
+
+    .login-form input:focus, .login-form textarea:focus, .login-form select:focus {
+        border: 1.5px solid #ff6ad1;
+        outline: none;
+    }
+
+input.center-btn, button.center-btn {
+    width: 100%;
+    margin-top: 14px;
+    font-size: 1.1em;
+    padding: 12px 0;
+    border-radius: 22px;
+    background: linear-gradient(90deg, #6a8dff 0%, #ff6ad1 100%);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 2px 8px rgba(106,141,255,0.10);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+    input.center-btn:hover, button.center-btn:hover {
+        background: linear-gradient(90deg, #ff6ad1 0%, #6a8dff 100%);
+        transform: scale(1.03);
+    }
+
+/* --- Estilos Lista de Usuarios (Tarjetas) --- */
+.user-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.user-card {
+    background: linear-gradient(120deg, #f7faff 0%, #fef6ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(106,141,255,0.08);
+    padding: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease-in-out;
+    .user-card-badge
+
+{
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.admin-badge {
+    background: linear-gradient(90deg, #FFD700, #FDB813); /* Dorado */
+    color: #4D4D4D;
+}
+
+.paseador-badge {
+    background-color: #ff6ad1; /* Rosado */
+}
+
+.cliente-badge {
+    background-color: #56CCF2; /* Azul claro */
+}
+}
+
+    .user-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(106,141,255,0.12);
+    }
+
+.user-card-header {
+    text-align: center;
+    border-bottom: 1px solid #e3eaff;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.user-card-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 15px auto;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 12px rgba(106, 141, 255, 0.2);
+}
+
+.user-card-name {
+    color: #6a8dff;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.role-badge {
+    background: linear-gradient(90deg, #ff6ad1 0%, #f7b42c 100%);
+    color: white;
+    font-size: 0.8em;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.user-card-body {
+    flex-grow: 1;
+}
+
+.user-card-detail {
+    font-size: 0.95em;
+    margin-bottom: 8px;
+    word-wrap: break-word; 
+}
+
+    .user-card-detail strong {
+        color: #ff6ad1;
+    }
+
+.user-card-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e3eaff;
+}
+
+.action-link {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+    .action-link.edit {
+        color: #6a8dff;
+    }
+
+        .action-link.edit:hover {
+            background-color: #e3eaff;
+        }
+
+    .action-link.details {
+        color: #5a6acf;
+    }
+
+        .action-link.details:hover {
+            background-color: #e3eaff;
+        }
+
+    .action-link.delete {
+        color: #fc575e;
+    }
+
+        .action-link.delete:hover {
+            background-color: #ffe3e3;
+        }
+
+/* --- Estilos Página de Perfil (Detalles) --- */
+.profile-section {
+    max-width: 700px;
+}
+
+.profile-header {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e3eaff;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 20px rgba(106, 141, 255, 0.25);
+}
+
+.profile-name {
+    color: #6a8dff;
+    font-size: 2em;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.profile-email {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.details-title {
+    text-align: center;
+    color: #ff6ad1;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px 20px;
+}
+
+    .details-list dt {
+        font-weight: 600;
+        color: #6a8dff;
+        text-align: right;
+    }
+
+    .details-list dd {
+        margin: 0;
+    }
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #e3eaff;
+}
+
+    .profile-actions .action-link {
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 12px;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .profile-actions .action-link.edit {
+            color: #fff;
+            background-color: #6a8dff;
+        }
+
+            .profile-actions .action-link.edit:hover {
+                background-color: #ff6ad1;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+        .profile-actions .action-link.details {
+            color: #374785;
+            background-color: #e3eaff;
+        }
+
+            .profile-actions .action-link.details:hover {
+                background-color: #ffe3f6;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+.profile-paseador-details {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #e3eaff;
+}
+
+.paseador-description, .paseador-experience {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    .paseador-description h3, .paseador-experience h3 {
+        color: #6a8dff;
+        margin-bottom: 10px;
+    }
+
+    .paseador-description p {
+        background-color: #f7faff;
+        padding: 15px;
+        border-radius: 12px;
+        font-style: italic;
+        text-align: left;
+    }
+
+/* --- Estilos Página "Nosotros" --- */
+.nosotros-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: linear-gradient(120deg, #6a8dff 0%, #ff6ad1 100%);
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 8px 32px rgba(106,141,255,0.13);
+    text-align: center;
+}
+
+.nosotros-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(106,141,255,0.15);
+    margin-bottom: 12px;
+}
+
+.nosotros-nombre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.nosotros-eslogan {
+    font-size: 1.2em;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    max-width: 600px;
+}
+
+.info-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(106,141,255,0.1);
+    transition: all 0.3s ease;
+}
+
+    .info-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 35px rgba(106,141,255,0.15);
+    }
+
+    .info-card h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8em;
+        color: #6a8dff;
+        margin-top: 0;
+        margin-bottom: 15px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+        .info-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #6a8dff 0%, #ff6ad1 100%);
+        }
+
+    .info-card p {
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
+
+/* --- Mensajes y Footer --- */
+.success-message {
+    background: linear-gradient(90deg, #6a8dff 0%, #4cddb2 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1em;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+/* --- Estilos para la Página de Eliminar --- */
+
+.delete-warning-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.warning-icon {
+    font-size: 2em;
+    font-weight: bold;
+    color: #fc575e;
+    width: 60px;
+    height: 60px;
+    border: 4px solid #fc575e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+}
+
+.delete-warning-header h2 {
+    color: #fc575e;
+    font-weight: 700;
+}
+
+.warning-text {
+    text-align: center;
+    color: #374785;
+    margin-bottom: 30px;
+}
+
+.user-summary-delete {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #f7faff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.profile-photo-small {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.user-summary-delete .user-name {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #6a8dff;
+}
+
+.user-summary-delete .user-email {
+    color: #374785;
+}
+
+.delete-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-danger {
+    background: #fc575e;
+}
+
+    .btn-danger:hover {
+        background: #d6343b;
+    }
+
+/* --- Estilo Mejorado para el Botón Secundario --- */
+
+.btn-secondary {
+    background: transparent; /* Hacemos el fondo transparente */
+    color: #5a6acf; /* Color del texto */
+    border: 2px solid #d1d8f3; /* Borde con un color sutil */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .btn-secondary:hover {
+        background: #e3eaff; /* Al pasar el cursor, se rellena */
+        color: #374785;
+        border-color: #e3eaff; /* El borde y el fondo se vuelven del mismo color */
+    }
+
+/* --- Estilos para la navegación de usuario logueado --- */
+.navbar-welcome {
+    font-weight: 600;
+    color: #374785;
+}
+
+/* Ajuste para que el botón de logout se vea bien dentro del formulario */
+.navbar-actions form {
+    margin: 0;
+}
+.admin-badge {
+    background: linear-gradient(90deg, #FFD700, #FDB813); /* Un degradado dorado */
+    color: #4D4D4D; /* Texto oscuro para contraste */
+    font-weight: 700;
+}

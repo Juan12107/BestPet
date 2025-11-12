@@ -1,0 +1,109 @@
+﻿@page
+@model BESTPET_DEFINITIVO.Pages.MiCuentaModel
+@{
+    ViewData["Title"] = "Mi Cuenta";
+}
+
+<main>
+    <section class="registro-section profile-section">
+
+        <div class="profile-header">
+            @if (!string.IsNullOrEmpty(Model.Usuario.RutaFoto))
+            {
+                <img src="@Model.Usuario.RutaFoto" alt="Foto de perfil" class="profile-photo" />
+            }
+            else
+            {
+                <img src="~/imagenes/foto-generica.jpeg" alt="Foto por defecto" class="profile-photo" />
+            }
+            <h1 class="profile-name">@Model.Usuario.Nombre @Model.Usuario.Apellido</h1>
+            <p class="profile-email">@Model.Usuario.Correo</p>
+        </div>
+
+        <div class="profile-details">
+            <h2 class="details-title">Mis Datos Personales</h2>
+            <dl class="details-list">
+                <dt>Nombre Completo</dt>
+                <dd>@Model.Usuario.Nombre @Model.Usuario.Apellido</dd>
+
+                <dt>Documento</dt>
+                <dd>@Model.Usuario.Documento</dd>
+            </dl>
+        </div>
+
+        @if (Model.Usuario.Rol == "Paseador")
+        {
+            <div class="profile-paseador-details">
+                <h2 class="details-title">Mi Perfil de Paseador</h2>
+
+                @if (!string.IsNullOrEmpty(Model.Usuario.Descripcion))
+                {
+                    <div class="paseador-description">
+                        <h3>Sobre mí</h3>
+                        <p>@Model.Usuario.Descripcion</p>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Usuario.RutaArchivoExperiencia))
+                {
+                    <div class="paseador-experience">
+                        <h3>Experiencia Adjunta</h3>
+                        <a href="@Model.Usuario.RutaArchivoExperiencia" target="_blank" class="center-btn" style="width: auto; padding: 10px 25px; text-decoration: none;">
+                            Ver Documento
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+        else if (Model.Usuario.Rol == "Cliente")
+        {
+            <div class="profile-paseador-details">
+                <h2 class="details-title">Mis Mascotas</h2>
+                <div class="user-cards-container">
+                    @if (Model.Usuario.Mascotas != null && Model.Usuario.Mascotas.Any())
+                    {
+                        @foreach (var mascota in Model.Usuario.Mascotas)
+                        {
+                            <div class="user-card">
+                                <div class="user-card-header">
+                                    @if (!string.IsNullOrEmpty(mascota.RutaFotoMascota))
+                                    {
+                                        <img src="@mascota.RutaFotoMascota" alt="Foto de @mascota.Nombre" class="user-card-photo" />
+                                    }
+                                    else
+                                    {
+
+                                        <img src="~/imagenes/foto-generica.jpeg" alt="Foto por defecto" class="user-card-photo" />
+                                    }
+                                    <div class="user-card-name">@mascota.Nombre</div>
+                                </div>
+                                <div class="user-card-body">
+                                    <div class="user-card-detail"><strong>Género:</strong> @mascota.Genero</div>
+                                    <div class="user-card-detail"><strong>Raza:</strong> @mascota.Raza</div>
+                                    <div class="user-card-detail"><strong>Edad:</strong> @mascota.Edad años</div>
+                                    <div class="user-card-detail"><strong>Vacunas:</strong> @mascota.Vacunas</div>
+                                    <div class="user-card-detail"><strong>Recomendaciones:</strong> @mascota.Recomendaciones</div>
+                                </div>
+                                <div class="user-card-actions">
+                                    <a asp-page="/Mascotas/Edit" asp-route-id="@mascota.Id" class="action-link edit">Editar</a>
+                                    <a asp-page="/Mascotas/Delete" asp-route-id="@mascota.Id" class="action-link delete">Eliminar</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p style="width: 100%; text-align: center;">Aún no tienes mascotas registradas.</p>
+                    }
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a asp-page="/Mascotas/AgregarMascota" class="center-btn" style="width: auto; padding: 10px 25px; text-decoration: none;">Agregar Nueva Mascota</a>
+                </div>
+            </div>
+        }
+
+        <div class="profile-actions">
+            <a asp-page="/Usuarios/Edit" asp-route-id="@Model.Usuario.Id" class="action-link edit">Editar Perfil</a>
+        </div>
+    </section>
+</main>
